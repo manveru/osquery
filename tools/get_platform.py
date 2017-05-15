@@ -24,6 +24,7 @@ SYSTEM_RELEASE = "/etc/system-release"
 LSB_RELEASE    = "/etc/lsb-release"
 DEBIAN_VERSION = "/etc/debian_version"
 GENTOO_RELEASE = "/etc/gentoo-release"
+NIXOS          = "/etc/NIXOS"
 
 def _platform():
     osType, _, _, _, _, _ = platform.uname()
@@ -71,6 +72,9 @@ def _platform():
 
         if os.path.exists(GENTOO_RELEASE):
             return ("gentoo", "gentoo")
+
+        if os.path.exists(NIXOS):
+            return ("nixos", "nixos")
     else:
         return (None, osType.lower())
 
